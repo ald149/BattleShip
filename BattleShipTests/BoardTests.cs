@@ -15,6 +15,26 @@ namespace BattleShipTests
         }
 
         [DataTestMethod]
+        [DataRow(false, "b5", "b9")]
+        [DataRow(false, "b5", "b2")]
+        [DataRow(true, "e5", "e9")]
+        [DataRow(true, "a1", "a4")]
+        [DataRow(true, "a5", "e5")]
+        public void Test_Ship_Placement_Does_Not_Intersect_Aircraft_Carrier(bool expectedIntersects, string start, string end)
+        {
+            //Arrange
+            AirCraftCarrier airCraftCarrier = new AirCraftCarrier(start, end);
+
+            //Act
+            bool actualIntersects = board.DoesShipIntersect(airCraftCarrier);
+
+            //Assert
+            Assert.AreEqual(expectedIntersects, actualIntersects);
+
+        }
+
+
+        [DataTestMethod]
         [DataRow(true, "a5")]
         [DataRow(false, "(5")]
         [DataRow(false, "a33242")]
@@ -77,24 +97,6 @@ namespace BattleShipTests
 
             //Assert
             Assert.AreEqual(expected, isValid);
-        }
-
-        /// <summary>
-        /// Needs logic added to method, this is junk. 
-        /// </summary>
-        [DataTestMethod]
-        public void Test_Ship_Placement_Does_Not_Overlap()
-        {
-            //Arrange
-            
-            AirCraftCarrier airCraftCarrier = new AirCraftCarrier("e3", "e7");
-
-            //Act
-            bool isClear = board.DoesShipIntersect(airCraftCarrier);
-
-            //Assert
-            Assert.IsFalse(isClear);
-
         }
 
         [DataTestMethod]

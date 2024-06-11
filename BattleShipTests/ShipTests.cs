@@ -40,7 +40,7 @@ namespace BattleShipTests
         [DataRow("j7", "j3")]
         [DataRow("F5", "B5")]
         [DataRow("J8", "F8")]
-        public void Test_Reorder_Coordinates(string start, string end) 
+        public void Test_Reorder_Coordinates_AirCraft_Carrier(string start, string end) 
         { 
             //Arrange
             var ship = new AirCraftCarrier(start, end);

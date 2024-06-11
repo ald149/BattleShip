@@ -68,6 +68,9 @@ namespace BattleShip
 
         public abstract List<string> ComputeCoorindates();
 
+        /// <summary>
+        /// This method reorders the coordinates so that the start is always a lower value than the end
+        /// </summary>
         public void ReorderCoordinates()
         {
             // Split the start and end coordinates into their row and column components

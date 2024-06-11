@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    public class AirCraftCarrier : Ship
+    public class Cruiser : Ship
     {
-        private const int _shipSize = 5;
+        private const int _shipSize = 3;
         private Color color = Color.Gray;
         private List<string> _shipCoordinates;
 
-        public AirCraftCarrier(string start, string end)
-            : base(start, end, _shipSize)
+        public Cruiser(string start, string end)
+        : base(start, end, _shipSize)
         {
             ReorderCoordinates();
-            _shipCoordinates =  ComputeCoorindates();
+            _shipCoordinates = ComputeCoorindates();
         }
 
         /// <summary>
@@ -48,5 +51,6 @@ namespace BattleShip
 
             return shipFullCoordinates;
         }
+
     }
 }

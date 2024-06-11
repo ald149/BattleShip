@@ -9,5 +9,6 @@ namespace BattleShip
     public interface IShip
     {
         List<string> ComputeCoorindates();
+        void ReorderCoordinates();
     }
 }

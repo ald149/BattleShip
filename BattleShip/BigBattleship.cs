@@ -4,17 +4,17 @@ using System.Drawing;
 
 namespace BattleShip
 {
-    public class AirCraftCarrier : Ship
+    public class BigBattleship : Ship
     {
-        private const int _shipSize = 5;
+        private const int _shipSize = 4;
         private Color color = Color.Gray;
         private List<string> _shipCoordinates;
 
-        public AirCraftCarrier(string start, string end)
-            : base(start, end, _shipSize)
+        public BigBattleship(string start, string end)
+        : base(start, end, _shipSize)
         {
             ReorderCoordinates();
-            _shipCoordinates =  ComputeCoorindates();
+            _shipCoordinates = ComputeCoorindates();
         }
 
         /// <summary>
@@ -48,5 +48,6 @@ namespace BattleShip
 
             return shipFullCoordinates;
         }
+
     }
 }

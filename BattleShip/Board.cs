@@ -54,10 +54,10 @@ namespace BattleShip
             playerBoard[0, 0] = 'C';  // a1
             playerBoard[0, 1] = 'C';  // a2 
             playerBoard[4, 7] = 'C';
-            playerBoard[2, 4] = 'C';
-            playerBoard[3, 4] = 'C';
-            playerBoard[4, 4] = 'C';
-            playerBoard[5, 4] = 'C';
+            playerBoard[2, 4] = 'C'; // c5
+            playerBoard[3, 4] = 'C'; // d5
+            playerBoard[4, 4] = 'C'; // e5
+            playerBoard[5, 4] = 'C'; // f5
             shootingBoard[5, 3] = 'H';
             shootingBoard[3, 4] = 'M';
 
@@ -82,8 +82,7 @@ namespace BattleShip
 
         #region Validation Method
 
-        ///***********************  this is our algorithm for our checks of user input and beginning the game. 
-        //ask the user to enter a start position and whether they want to go up, down, left, right, then check the validity of those options. 
+        ///***********************  this is the algorithm for checks of user input at the beginning the game. 
         // first check if the input is a correct length and format. 
         // next we check if the coordinate is on the board
         // finally we run the validation for the start and end points. They are obviously now both on the board, we must only at this point determine proper length and orientation. 
@@ -131,15 +130,26 @@ namespace BattleShip
             }
         }
         /// <summary>
-        /// Tests to see if ship placement will intersect another existing ship. Checks that ship placement will not overlap with a coordinate currently marked "C" for covered vs "O"
-        /// for open
+        /// Tests to see if ship placement will intersect another existing ship. Checks that ship placement will not overlap with a coordinate currently marked "C" for covered vs 
+        /// "O" for open
         /// </summary>
         /// <returns></returns>
         public bool DoesShipIntersect(Ship ship)
         {
+            bool intersects = false;
 
+            foreach (string coordinate in ship.ShipCoordinates)
+            {
+                int row = coordinate[1] - '1';
+                int col = coordinate[0] - 'a';
 
-            return false;
+                if (playerBoard[row, col] == 'C')
+                {
+                    intersects = true;
+                }
+                
+            }
+            return intersects;
         }
 
         /// <summary>
@@ -188,12 +198,12 @@ namespace BattleShip
 
             // These algorithms or checks do all the heavy lifting After the coordinates are converted to simple integers, the math is 
             // rather simple to check if the ships start and end coordinates are valid in relation to each other. 
-            if (endCoordinate - startCoordinate == (ship.ShipSize - 1) || startCoordinate - endCoordinate == (ship.ShipSize - 1))
+            if (endCoordinate - startCoordinate == (ship.ShipSize - 1))
             {
                 isValid = true;
                 return isValid;
             }
-            else if (endCoordinate - startCoordinate == ((ship.ShipSize - 1) * 10) || (startCoordinate - endCoordinate == (ship.ShipSize -1) * 10) )
+            else if (endCoordinate - startCoordinate == ((ship.ShipSize - 1) * 10))
             {
                 isValid = true;
                 return isValid;
