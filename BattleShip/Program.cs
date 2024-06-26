@@ -7,8 +7,7 @@ namespace BattleShip
         static void Main(string[] args)
         {
             Board board = new Board();
-            board.DisplayUserShips();
-            board.DisplayHitsAndMissesOnEnemy();
+            GameController gameController = new GameController(board);
 
         }
     }
