@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BattleShip
 {
@@ -15,6 +11,7 @@ namespace BattleShip
         private Ship submarine;
         private Ship cruiser;
         private string[] startEndCoordinates;
+        private OpponentController opponentController;
 
 
         public GameController(Board board)
@@ -28,11 +25,18 @@ namespace BattleShip
             Console.WriteLine("Welcome to Battleship!! ");
             _board.DisplayUserShips(ConsoleColor.Gray);
             _board.DisplayHitsAndMissesOnEnemy();
-            SetupAirCraftCarrier();
-            SetupBigBattleShip();
-            SetupDestroyer();
-            SetupSubmarine();
-            SetupCruiser();
+            //SetupAirCraftCarrier();
+            //SetupBigBattleShip();
+            //SetupDestroyer();
+            //SetupSubmarine();
+            //SetupCruiser();
+            SetupEnemyBoard();
+        }
+
+        private void SetupEnemyBoard()
+        {
+            opponentController = new OpponentController(_board);
+            _board.OpponentBoard = opponentController.PlaceOpponentShips();
         }
 
         /// <summary>
@@ -425,6 +429,9 @@ namespace BattleShip
             _board.AddShip(cruiser.ShipCoordinates);
             _board.DisplayUserShips(ConsoleColor.DarkMagenta);
         }
+
+
+
 
     }
 }

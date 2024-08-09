@@ -60,6 +60,21 @@ namespace BattleShip
             get { return playerBoard; }
             set { playerBoard = value; }
         }
+
+        public char[,] OpponentBoard
+        {
+            get { return opponentBoard; }
+
+            set { opponentBoard = value; }
+        }
+
+        public char[,] OpponentShootingBoard
+        {
+            get { return opponentShootingBoard; }
+
+            set { opponentShootingBoard = value; }
+        }
+
         public Board()
         {
             playerBoard = new char[10, 10];
@@ -174,6 +189,42 @@ namespace BattleShip
                     return intersects;
                 }
                 
+            }
+            return intersects;
+        }
+
+        /// <summary>
+        /// For Opponent's board. 
+        /// Tests to see if ship placement will intersect another existing ship. Checks that ship placement will not overlap with a coordinate currently marked "C" for covered vs 
+        /// "O" for open
+        /// </summary>
+        /// <returns></returns>
+        public bool DoesOpponentShipIntersect(Ship ship)
+        {
+            bool intersects = false;
+
+            foreach (string coordinate in ship.ShipCoordinates)
+            {
+                int col = 0;
+                int row = 0;
+
+                if (coordinate.Length == 2)
+                {
+                    col = coordinate[1] - '1';
+                    row = coordinate[0] - 'a';
+                }
+                else if (coordinate.Length == 3)
+                {
+                    col = 9;
+                    row = coordinate[0] - 'a';
+                }
+
+                if (opponentBoard[row, col] == 'C')
+                {
+                    intersects = true;
+                    return intersects;
+                }
+
             }
             return intersects;
         }
@@ -453,12 +504,6 @@ namespace BattleShip
                     opponentShootingBoard[i, j] = 'O';
                 }
             }
-        }
-
-        public void PlaceEnemyShips()
-        {
-
-
         }
 
     }

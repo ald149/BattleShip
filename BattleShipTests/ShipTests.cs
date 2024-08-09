@@ -63,41 +63,5 @@ namespace BattleShipTests
 
         }
 
-        [DataTestMethod]    
-        [DataRow("a7", "a3")]
-        [DataRow("j7", "j3")]
-        [DataRow("F5", "B5")]
-        [DataRow("J8", "F8")]
-        public void Test_Reorder_Coordinates_AirCraft_Carrier(string start, string end) 
-        { 
-            //Arrange
-            var ship = new Ship(start, end, Ship.ShipName.Aircraft_Carrier);
-
-            //Act
-            ship.ReorderCoordinates();
-
-            //Assert
-            Assert.AreEqual(ship.End, start.ToLower());
-            Assert.AreEqual(ship.Start, end.ToLower());
-        }
-
-        [DataTestMethod]
-        [DataRow("a6", "a3")]
-        [DataRow("j6", "j3")]
-        [DataRow("F5", "C5")]
-        [DataRow("J8", "E8")]
-        public void Test_Reorder_Coordinates_BigBattleShip(string start, string end)
-        {
-            //Arrange
-            var ship = new Ship(start, end, Ship.ShipName.Aircraft_Carrier);
-
-            //Act
-            ship.ReorderCoordinates();
-
-            //Assert
-            Assert.AreEqual(ship.End, start.ToLower());
-            Assert.AreEqual(ship.Start, end.ToLower());
-        }
-
     }
 }

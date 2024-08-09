@@ -137,28 +137,6 @@ namespace BattleShip
 
             return shipFullCoordinates;
         }
-
-        /// <summary>
-        /// This method reorders the coordinates so that the start is always a lower value than the end
-        /// </summary>
-        public void ReorderCoordinates()
-        {
-            // Split the start and end coordinates into their row and column components
-            int startRow = int.Parse(_start.Substring(1));
-            int endRow = int.Parse(_end.Substring(1));
-            char startCol = _start[0];
-            char endCol = _end[0];
-
-            // Check if the end coordinate comes before the start coordinate horizontally or vertically
-            if (endCol < startCol || endRow < startRow)
-            {
-                // Swap the start and end coordinates
-                string temp = _start;
-                _start = _end;
-                _end = temp;
-            }
-
-        }
         
     }
 }
